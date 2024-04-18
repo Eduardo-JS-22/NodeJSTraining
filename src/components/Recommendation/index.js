@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { TitleContainer } from "../Title";
 
 const CardContainer = styled.div`
-    align-itens: center;
+    align-items: center;
     background-color: #fff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
