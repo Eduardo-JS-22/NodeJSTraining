@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import InputContainer from '../Input'
-import { useState } from 'react'
-import { books } from './searchData'
+import { useEffect, useState } from 'react'
+import { getBooks } from '../../services/books'
+import { insertFavourite } from '../../routes/Favorites'
 
 const SearchContainer = styled.section`
     background-color: linear-gradient(90deg, #002f52 35%, #326589 165%);
@@ -44,8 +45,17 @@ const ResultContainer = styled.div`
 
 function Search() {
     const [inputBook, setInputBook] = useState([])
+    const [books, setBooks] = useState([])
 
-    console.log(inputBook)
+    useEffect(() => {
+        fetchBooks()
+    }, [])
+
+    async function fetchBooks() {
+        const booksAPI = await getBooks()
+        console.log(booksAPI)
+        setBooks(booksAPI)
+    }
 
     return (
         <SearchContainer>
@@ -60,7 +70,7 @@ function Search() {
                 }}
             />
             {inputBook.map(book => (
-                <ResultContainer>
+                <ResultContainer onClick={() => insertFavourite(book.id)}>
                     <img src={book.src}/>
                     <p>{book.name}</p>
                 </ResultContainer>

@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { Link } from "react-router-dom" 
 
 const optionText = ['CATEGORIAS', 'FAVORITOS', 'MINHA ESTANTE']
 const OptionContainer = styled.li`
@@ -22,7 +23,7 @@ function Options() {
     return (
         <OptionsContainer>
             {optionText.map((text) => (
-                <OptionContainer><p>{text}</p></OptionContainer>
+                <Link to={`/${text.toLowerCase().replace(/ /g, "")}`}><OptionContainer><p>{text}</p></OptionContainer></Link>
             ))}
         </OptionsContainer>
     )
